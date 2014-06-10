@@ -17,10 +17,19 @@ def blog_list(request):
     blogs = Blog.objects.order_by('-id')
     tags = Tag.objects.all()
     weibos = Weibo.objects.order_by('-publish_time')[:5]
+    #return render_to_response("blog_list.html",
     return render_to_response("blog_list.html",
         {"blogs": blogs, "tags": tags, "weibos": weibos},
         context_instance=RequestContext(request))
 
+
+def about_me(request):
+    html = "<meta http-equiv=\"refresh\" content=\"3;url=/\">Under Development. Will return to homepage."
+    return HttpResponse(html)
+
+def contact(request):
+    html = "<meta http-equiv=\"refresh\" content=\"3;url=/\">Under Development. Will return to homepage."
+    return HttpResponse(html)
 
 def blog_filter(request, id=''):
     tags = Tag.objects.all()
@@ -116,12 +125,12 @@ def add_weibo(request):
         {"weibos": weibos},
         context_instance=RequestContext(request))
     else:
-        return HttpResponse('dddd')
-        # blogs = Blog.objects.order_by('-id')
-        # tags = Tag.objects.all()
-        # return render_to_response("blog_list.html",
-        #     {"blogs": blogs, "tags": tags},
-        #     context_instance=RequestContext(request))
+        #return HttpResponse('dddd')
+        blogs = Blog.objects.order_by('-id')
+        tags = Tag.objects.all()
+        return render_to_response("blog_list.html",
+            {"blogs": blogs, "tags": tags},
+            context_instance=RequestContext(request))
 
 
 def blog_update(request, id=""):
