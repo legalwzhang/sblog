@@ -5,7 +5,10 @@ from django.conf.urls import *
 
 
 urlpatterns = patterns(('simpleblog.views'),
+    url(r'^$', 'blog_list', name='bloglist'),
     url(r'^bloglist/$', 'blog_list', name='bloglist'),
+    url(r'^about-me/$', 'about_me', name='about-me'),
+    url(r'^contact/$', 'contact', name='contact'),
     url(r'^blog/tag/(?P<id>\d+)/$', 'blog_filter', name='filtrblog'),
     url(r'^blog/search/$', 'blog_search', name='searchblog'),
     url(r'^blog/(?P<id>\d+)/$', 'blog_show', name='detailblog'),

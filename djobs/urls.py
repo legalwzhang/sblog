@@ -14,17 +14,19 @@ urlpatterns = patterns(('djobs.views'),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     # Uncomment the next line to enable the admin:
+    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
     url(r'^comments/', include('django.contrib.comments.urls')),
+    url(r'^$', include('simpleblog.urls')),
 )
 
 urlpatterns += patterns((''),
-    (r'^simpleblog/', include('simpleblog.urls')),
+    url(r'^simpleblog/', include('simpleblog.urls')),
 )
 
 urlpatterns += patterns((''),
     #静态文件
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': settings.STATIC_ROOT}
             # {'document_root': '/home/gs/djobs/static/'}
     ),
